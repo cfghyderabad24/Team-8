@@ -34,9 +34,9 @@ const LoginPage = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title="Login" onPress={handleLogin} />
+      <Button title="Login" 
+      onPress={() => navigation.navigate('ViewStudent')} />
       <Text></Text>
-      <Button title="Register" onPress={navigateToRegister} />
     </View>
   );
 };
