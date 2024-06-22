@@ -6,18 +6,8 @@ const LoginPage = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Here you would usually send the username and password to your backend server for verification
-    if (username === 'test' && password === '1234') {
-      Alert.alert('Login Successful');
-    } else {
-      Alert.alert('Login Failed', 'Invalid username or password');
-    }
+    
   };
-
-  const navigateToRegister = () => {
-    navigation.navigate('Register');
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginPage from './pages/LoginPage';
-import ViewStudent from './pages/ViewStudent';
+// import ViewStudent from './pages/ViewStudent';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +12,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={currPage} screenOptions={{headerShown: true }}>
         <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="ViewStudent" component={ViewStudent} />
+        {/* <Stack.Screen name="ViewStudent" component={ViewStudent} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
