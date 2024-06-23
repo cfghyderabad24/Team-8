@@ -1,27 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const authRoutes = require('./routes/auth'); // Your existing auth routes
+const bookRoutes = require('./routes/books'); // New book search route
 const db = require('./config/database');
-const authRoutes = require('./routes/auth');
-const cors = require('cors'); // Import the cors package
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-app.options('*', cors()); // Enable CORS preflight for all routes
-app.use(cors({
-    origin: 'http://your-react-native-app.com', // Replace with your app's URL
-    methods: ['GET', 'POST'], // Allow specific HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-  }));
-  
-// Routes
-app.use(bodyParser.json());
-app.use('/api/auth', authRoutes);
+const PORT = process.env.PORT || 5000;
 
+// Enable CORS
+app.use(cors());
+
+// Middleware to parse JSON requests
+app.use(bodyParser.json());
+
+// Routes
+app.use('/api/auth', authRoutes); // Your existing auth routes
+app.use('/api/books', bookRoutes); // New book search route
+
+// Initialize and sync database (if needed)
 async function initializeDatabase() {
   try {
     await db.authenticate();
     console.log('Database connected...');
-    await db.sync();
+    await db.sync(); // Sync your Sequelize models if necessary
     console.log('Database synced');
   } catch (err) {
     console.error('Error initializing database:', err);
@@ -32,15 +34,8 @@ initializeDatabase().then(() => {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
 
-// Middleware to log requests
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);
-  next();
-});
-
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
+  console.error('Error:', err.stack);
+  res.status(500).send('Internal server error');
 });
-
