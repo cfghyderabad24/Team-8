@@ -34,4 +34,30 @@ const Book = sequelize.define('Book', {
   },
 });
 
-module.exports = { sequelize, Student, Book };
+const Transaction = sequelize.define('Transaction', {
+  transactionType: {
+    type: DataTypes.ENUM('check-in', 'check-out'),
+    allowNull: false,
+  },
+  completed: {
+    type: DataTypes.BOOLEAN,
+  },
+  rating: {
+    type: DataTypes.INTEGER,
+    validate: {
+      min: 1,
+      max: 3,
+    },
+  },
+  transactionDate: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+  },
+});
+
+// Associations
+Book.belongsTo(Student);
+Transaction.belongsTo(Book);
+Transaction.belongsTo(Student);
+
+module.exports = { sequelize, Student, Book, Transaction };
