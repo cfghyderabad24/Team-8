@@ -25,7 +25,7 @@ const LoginPage = ({ navigation }) => {
         secureTextEntry
       />
       <Button title="Login" 
-      onPress={() => navigation.navigate('ViewStudent')} />
+      onPress={() => navigation.navigate('SideBar')} />
       <Text></Text>
     </View>
   );

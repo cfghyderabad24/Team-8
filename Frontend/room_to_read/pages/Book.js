@@ -7,7 +7,7 @@ const bookData = [
   { bookName: 'Hatchet', availability: 'Not Available', days: 7 },
   { bookName: 'Lord of the Rings', availability: 'Available', days: 0 },
   { bookName: 'The Phantom Tollbooth', availability: 'Not Available', days: 4 },
-  { bookName: 'The City of Ember', availability: 'Available', days: 0 }
+  { bookName: 'The City of Ember', availability: 'Available', days: 0 },
   // Add more dummy books as needed
 ];
 
@@ -88,6 +88,13 @@ const BookSearchApp = () => {
 
   return (
     <View style={styles.container}>
+    <Text></Text>
+    <Text></Text>
+    <Text></Text>
+    <Text></Text>
+    <Text></Text>
+    <Text></Text>
+    <Text></Text>
       <Autocomplete
         data={filteredBooks}
         defaultValue={query}
