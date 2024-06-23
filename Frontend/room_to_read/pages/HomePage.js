@@ -1,16 +1,12 @@
-import 'react-native-gesture-handler';
-import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, Image, View } from 'react-native';
 
-const Drawer = createDrawerNavigator();
+// Define the source of your image (replace with your actual image source)
+const myLogo = require('../assets/Logo.png');
 
-// Placeholder components for each section
 function HomeScreen() {
     const [selectedLine, setSelectedLine] = useState(null);
-    const [data, setData] = useState({
+    const [data] = useState({
         registeredStudents: 30,
         totalBooks: 100,
         availableBooks: 50,
@@ -18,161 +14,117 @@ function HomeScreen() {
         dueBooks: 15,
     });
 
-    // useEffect(() => {
-    //     // Simulate fetching data from a backend API
-    //     fetchData();
-    // }, []);
-
-    const fetchData = async () => {
-        // Replace with your actual data-fetching logic
-        try {
-            // Example: Fetch data from an API
-            const response = await fetch('https://example.com/api/data');
-            const result = await response.json();
-            // Update state with fetched data
-            setData(result);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
     const handleLinePress = (line) => {
         setSelectedLine(line);
     };
 
     return (
         <SafeAreaView style={styles.container}>
+            {/* Heading */}
+            <Text style={styles.heading}>Library Ledger</Text>
+
+            {/* Image component at the top-right corner */}
+            <Image source={myLogo} style={styles.logo} />
+
+            {/* Touchable components for each section */}
             <TouchableOpacity
-                style={[styles.flag, selectedLine === 1 && styles.selected]}
+                style={[styles.flag, { backgroundColor: '#d3f7fb' }, selectedLine === 1 && styles.selected]}
                 onPress={() => handleLinePress(1)}
             >
-                <Text style={styles.text}>Number of Registered students: {data.registeredStudents}</Text>
+                <Text style={styles.text}>Registered number of Students</Text>
+                <View style={styles.numberContainer}>
+                    <Text style={styles.number}>{data.registeredStudents}</Text>
+                </View>
             </TouchableOpacity>
             <TouchableOpacity
-                style={[styles.flag, selectedLine === 2 && styles.selected]}
+                style={[styles.flag, { backgroundColor: '#c8e6c9' }, selectedLine === 2 && styles.selected]}
                 onPress={() => handleLinePress(2)}
             >
-                <Text style={styles.text}>Total Number of Books: {data.totalBooks}</Text>
+                <Text style={styles.text}>Total Books</Text>
+                <View style={styles.numberContainer}>
+                    <Text style={styles.number}>{data.totalBooks}</Text>
+                </View>
             </TouchableOpacity>
             <TouchableOpacity
-                style={[styles.flag, selectedLine === 3 && styles.selected]}
+                style={[styles.flag, { backgroundColor: '#e1bee7' }, selectedLine === 3 && styles.selected]}
                 onPress={() => handleLinePress(3)}
             >
-                <Text style={styles.text}>Number of Available Books: {data.availableBooks}</Text>
+                <Text style={styles.text}>Available number of Books</Text>
+                <View style={styles.numberContainer}>
+                    <Text style={styles.number}>{data.availableBooks}</Text>
+                </View>
             </TouchableOpacity>
             <TouchableOpacity
-                style={[styles.flag, selectedLine === 4 && styles.selected]}
+                style={[styles.flag, { backgroundColor: '#fff9c4' }, selectedLine === 4 && styles.selected]}
                 onPress={() => handleLinePress(4)}
             >
-                <Text style={styles.text}>Books Checked Out: {data.booksCheckedOut}</Text>
+                <Text style={styles.text}>Books Checked Out</Text>
+                <View style={styles.numberContainer}>
+                    <Text style={styles.number}>{data.booksCheckedOut}</Text>
+                </View>
             </TouchableOpacity>
             <TouchableOpacity
-                style={[styles.flag, selectedLine === 5 && styles.selected]}
+                style={[styles.flag, { backgroundColor: '#f8bbd0' }, selectedLine === 5 && styles.selected]}
                 onPress={() => handleLinePress(5)}
             >
-                <Text style={styles.text}>Number of Due Books: {data.dueBooks}</Text>
+                <Text style={styles.text}>Books Due</Text>
+                <View style={styles.numberContainer}>
+                    <Text style={styles.number}>{data.dueBooks}</Text>
+                </View>
             </TouchableOpacity>
         </SafeAreaView>
     );
 }
 
-function BooksScreen() {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.text}>Books Screen</Text>
-        </SafeAreaView>
-    );
-}
-
-function CheckInScreen() {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.text}>Check-In Screen</Text>
-        </SafeAreaView>
-    );
-}
-
-function CheckOutScreen() {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.text}>Check-Out Screen</Text>
-        </SafeAreaView>
-    );
-}
-
-function AnalyticsScreen() {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.text}>Analytics Screen</Text>
-        </SafeAreaView>
-    );
-}
-
-function LogOutScreen() {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.text}>Log Out Screen</Text>
-        </SafeAreaView>
-    );
-}
-
-function MyDrawer() {
-    return (
-        <Drawer.Navigator
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: '#ffe0b2',  // Very light orange
-                },
-                headerTintColor: '#000',  // Dark text for contrast
-                drawerStyle: {
-                    backgroundColor: '#ffe0b2',  // Very light orange
-                },
-                drawerActiveTintColor: '#ff9800',
-                drawerInactiveTintColor: '#000',  // Dark text for contrast
-            }}
-        >
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Books" component={BooksScreen} />
-            <Drawer.Screen name="Check-In" component={CheckInScreen} />
-            <Drawer.Screen name="Check-Out" component={CheckOutScreen} />
-            <Drawer.Screen name="Analytics" component={AnalyticsScreen} />
-            <Drawer.Screen name="Log Out" component={LogOutScreen} />
-        </Drawer.Navigator>
-    );
-}
-
-export default function HomePage() {
-    return (
-        <HomeScreen/>
-        // <NavigationContainer>
-        //     <StatusBar barStyle="dark-content" />
-        //     <MyDrawer />
-        // </NavigationContainer>
-    );
-}
+export default HomeScreen;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
-        paddingLeft: 20, // Adjust padding as needed
+        alignItems: 'center',
+        backgroundColor: '#fff', // Background color of the SafeAreaView
+        paddingTop: 50, // Adjust padding as needed
+    },
+    heading: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+    },
+    logo: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        width: 50,
+        height: 50,
     },
     flag: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         backgroundColor: '#b2ebf2',  // Light cyan for the flag background
         paddingVertical: 10,
-        paddingHorizontal: 20,
-        marginVertical: 5,
-        borderRadius: 5,
+        paddingHorizontal: 15, // Adjusted padding
+        marginVertical: 10,
+        borderRadius: 10,
         width: '80%', // Adjust width as needed
     },
     selected: {
-        backgroundColor: '#ffccbc',  // Light orange for selected state
+        backgroundColor: '#ffccbc', // Light orange for selected state
     },
     text: {
-        fontSize: 24,
-        color: '#000',  // Dark text for contrast
+        fontSize: 16, // Reduced font size
+        color: '#333',
+        fontWeight: 'bold',
+    },
+    numberContainer: {
+        backgroundColor: '#e0e0e0',
+        padding: 10,
+        borderRadius: 5,
+    },
+    number: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#333',
     },
 });
-
