@@ -5,6 +5,7 @@ import StudentsPage from '../pages/StudentsPage';
 import ViewStudent from '../pages/ViewStudent';
 import BookSearchApp from '../pages/Book';
 import TransactionPage from '../pages/inout';
+import HomePage from '../pages/HomePage';
 
 const Sidebar = () => {
   const navigation = useNavigation();
@@ -46,6 +47,8 @@ const Sidebar = () => {
         return <BookSearchApp/>
       case 'Transactions':
         return <TransactionPage/>
+      case 'HomePage':
+        return <HomePage/>
       // Add more cases for other sidebar items as needed
     }
   };
@@ -69,7 +72,7 @@ const Sidebar = () => {
       <Text></Text>
       <Text></Text>
       
-        <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('home')}>Home</Text>
+        <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('HomePage')}>Home</Text>
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('Books')}>Books</Text>
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('Transactions')}>Check-in / Check-out</Text>
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('Students')}>Students</Text>
