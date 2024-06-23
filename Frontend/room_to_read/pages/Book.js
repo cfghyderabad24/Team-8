@@ -8,7 +8,8 @@ const bookData = [
   { bookName: 'Lord of the Rings', availability: 'Available', days: 0 },
   { bookName: 'The Phantom Tollbooth', availability: 'Not Available', days: 4 },
   { bookName: 'The City of Ember', availability: 'Available', days: 0 },
-  // Add more dummy books as needed
+  { bookName: 'The Hunger Games', availability: 'Available', days: 1 },
+  { bookName: 'To Kill a Mockingbird', availability: 'Not Available', days: 3 },
 ];
 
 const BookSearchApp = () => {

@@ -97,6 +97,8 @@ const styles = StyleSheet.create({
         right: 10,
         width: 50,
         height: 50,
+        marginTop: 30,
+        marginRight: 20
     },
     flag: {
         flexDirection: 'row',
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffccbc', // Light orange for selected state
     },
     text: {
-        fontSize: 16, // Reduced font size
+        fontSize: 14, // Reduced font size
         color: '#333',
         fontWeight: 'bold',
     },

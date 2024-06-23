@@ -6,6 +6,9 @@ import ViewStudent from '../pages/ViewStudent';
 import BookSearchApp from '../pages/Book';
 import TransactionPage from '../pages/inout';
 import HomePage from '../pages/HomePage';
+import Analytics from '../pages/Analytics';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Import the specific icon set you want to use
+
 
 const Sidebar = () => {
   const navigation = useNavigation();
@@ -49,6 +52,8 @@ const Sidebar = () => {
         return <TransactionPage/>
       case 'HomePage':
         return <HomePage/>
+      case 'Analytics':
+        return <Analytics/>
       default:
         return <HomePage/>
         
@@ -61,7 +66,7 @@ const Sidebar = () => {
     
       {/* Main content */}
       <TouchableOpacity onPress={toggleSidebar} style={styles.toggleButton}>
-        <Text style={styles.toggleText}>{isOpen ? '-' : '+'} </Text>
+      {isOpen ? <Icon name="angle-double-left" size={20} /> : <Icon name="angle-double-right" size={20} />}
       </TouchableOpacity>
 
       {renderMainContent()}

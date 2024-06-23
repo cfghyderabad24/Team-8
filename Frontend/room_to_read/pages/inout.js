@@ -101,10 +101,10 @@ const TransactionPage = () => {
             <RNPickerSelect
               onValueChange={(value) => setSelectedBook(value)}
               items={[
-                { label: 'The Cat in the Hat, ASD2351', value: 'book1' },
-                { label: 'Green Eggs and Ham, OPT7589', value: 'book2' },
-                { label: 'Charlottes Web, PIR7183', value: 'book1' },
-                { label: 'Go, Dog. Go!, URT8162', value: 'book2' },
+                { label: 'Where the Wild Things Are', value: 'book1' },
+                { label: 'Goodnight Moon', value: 'book2' },
+                { label: 'The Very Hungry Caterpillar', value: 'book1' },
+                { label: 'Brown Bear, Brown Bear, What Do You See?', value: 'book2' },
               ]}
               style={pickerSelectStyles}
             />

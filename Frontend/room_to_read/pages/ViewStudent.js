@@ -39,9 +39,12 @@ const ViewStudent = () => {
 
   return (
     <View style={styles.container}>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
         <Text>Total number of books checked-out: {getTotalStudents()}</Text>
         <Text></Text>
-        <Text>Level-wise analysis</Text>
+        <Text style={styles.title}>Level-wise analysis</Text>
         <PieChart
             data={chartData}
             width={Dimensions.get('window').width - 16}
@@ -59,7 +62,7 @@ const ViewStudent = () => {
         />
         <Text></Text>
         <Text></Text>
-        <Text>No. of books read</Text>
+        <Text style={styles.title}>No. of books read</Text>
         <LineChart
         data={line_chart_data}
         width={350}
@@ -97,6 +100,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f0f0f0',
   },
+  title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 20,
+    },
 });
 
 export default ViewStudent;
