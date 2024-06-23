@@ -16,7 +16,15 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api/auth', authRoutes); // Your existing auth routes
-app.use('/api/students', studentRoutes); // New student search route
+app.get('/api/students', async (req, res) => {
+  try {
+    const students = await Student.findAll();
+    res.json(students);
+  } catch (error) {
+    console.error('Error fetching students:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 // Initialize and sync database (if needed)
 async function initializeDatabase() {
