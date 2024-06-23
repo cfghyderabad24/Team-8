@@ -12,7 +12,6 @@ const TransactionPage = () => {
 
   const handleTransactionChange = (value) => {
     setTransaction(value);
-    // Reset selections when transaction type changes
     setSelectedBook('');
     setSelectedStudent('');
     setCompleted(null);
@@ -21,7 +20,6 @@ const TransactionPage = () => {
 
   const handleSubmit = () => {
     if (transaction === 'check-in') {
-      // Validate rating field
       if (rating < '1' || rating > '3' || rating === '') {
         Alert.alert('Invalid Rating', 'Rating must be between 1 and 3.');
         return;
@@ -37,11 +35,9 @@ const TransactionPage = () => {
     };
     console.log('Form Data:', formData);
 
-    // Display success message
     const successMessage = transaction === 'check-out' ? 'Successfully Checked-out' : 'Successfully Checked-in';
     Alert.alert('Success', successMessage);
 
-    // Clear form fields after submission
     setTransaction('');
     setSelectedBook('');
     setSelectedStudent('');
@@ -52,31 +48,24 @@ const TransactionPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
         <Text style={styles.header}>Book with Ease: Check-In and Out in Seconds</Text>
         <View style={styles.buttonContainer}>
           <View style={styles.buttonWrapper}>
             <Button
               title="Check-In"
               onPress={() => handleTransactionChange('check-in')}
-              color={transaction === 'check-in' ? 'blue' : 'gray'}
+              color={transaction === 'check-in' ? '#4CAF50' : '#8BC34A'}
             />
           </View>
           <View style={styles.buttonWrapper}>
             <Button
               title="Check-Out"
               onPress={() => handleTransactionChange('check-out')}
-              color={transaction === 'check-out' ? 'blue' : 'gray'}
+              color={transaction === 'check-out' ? '#2196F3' : '#64B5F6'}
             />
           </View>
         </View>
 
-        {/* Render fields for Check-out */}
         {transaction === 'check-out' && (
           <>
             <Text style={styles.label}>Book:</Text>
@@ -102,14 +91,12 @@ const TransactionPage = () => {
               ]}
               style={pickerSelectStyles}
             />
-            <Button title="Submit" onPress={handleSubmit} />
+            <Button title="Submit" onPress={handleSubmit} color="#FF5722" />
           </>
         )}
 
-        {/* Render fields for Check-in */}
         {transaction === 'check-in' && (
           <>
-            {/* Dropdown for Book */}
             <Text style={styles.label}>Book:</Text>
             <RNPickerSelect
               onValueChange={(value) => setSelectedBook(value)}
@@ -122,7 +109,6 @@ const TransactionPage = () => {
               style={pickerSelectStyles}
             />
 
-            {/* Dropdown for Student */}
             <Text style={styles.label}>Student:</Text>
             <RNPickerSelect
               onValueChange={(value) => setSelectedStudent(value)}
@@ -135,8 +121,7 @@ const TransactionPage = () => {
               style={pickerSelectStyles}
             />
 
-            {/* Additional fields for Check-in */}
-            <Text>Feedback:</Text>
+            <Text style={styles.label}>Feedback:</Text>
             <Text style={styles.label}>Completed:</Text>
             <RadioForm
               radio_props={[
@@ -168,7 +153,7 @@ const TransactionPage = () => {
               }}
             />
 
-            <Button title="Submit" onPress={handleSubmit} />
+            <Button title="Submit" onPress={handleSubmit} color="#FF5722" />
           </>
         )}
       </View>
@@ -179,27 +164,40 @@ const TransactionPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
   },
   contentContainer: {
-    flex: 1,
+    width: '90%',
+    backgroundColor: '#FFFFFF',
     padding: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
   header: {
     fontSize: 24,
     marginBottom: 20,
+    textAlign: 'center',
+    color: '#333',
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-start', // Align items to the start
+    justifyContent: 'space-evenly',
     marginBottom: 20,
   },
   buttonWrapper: {
-    marginRight: 10, // Add some space between the buttons
+    flex: 1,
+    marginHorizontal: 5,
   },
   label: {
     fontSize: 18,
     marginBottom: 10,
+    color: '#666',
   },
   radioLabel: {
     fontSize: 16,
@@ -212,6 +210,8 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     fontSize: 16,
     marginVertical: 10,
+    borderRadius: 4,
+    backgroundColor: '#F0F0F0',
   },
 });
 
@@ -224,17 +224,21 @@ const pickerSelectStyles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 4,
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
+    backgroundColor: '#F0F0F0',
+    marginBottom: 10,
   },
   inputAndroid: {
     fontSize: 16,
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 0.5,
-    borderColor: 'purple',
+    borderColor: 'gray',
     borderRadius: 8,
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
+    backgroundColor: '#F0F0F0',
+    marginBottom: 10,
   },
 });
 
