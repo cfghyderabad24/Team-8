@@ -49,6 +49,9 @@ const Sidebar = () => {
         return <TransactionPage/>
       case 'HomePage':
         return <HomePage/>
+      default:
+        return <HomePage/>
+        
       // Add more cases for other sidebar items as needed
     }
   };
