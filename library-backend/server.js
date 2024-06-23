@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/auth'); // Your existing auth routes
-const bookRoutes = require('./routes/books'); // New book search route
+const studentRoutes = require('./routes/students'); // New student search route
 const db = require('./config/database');
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api/auth', authRoutes); // Your existing auth routes
-app.use('/api/books', bookRoutes); // New book search route
+app.use('/api/students', studentRoutes); // New student search route
 
 // Initialize and sync database (if needed)
 async function initializeDatabase() {
