@@ -11,11 +11,11 @@ const Drawer = createDrawerNavigator();
 function HomeScreen() {
     const [selectedLine, setSelectedLine] = useState(null);
     const [data, setData] = useState({
-        registeredStudents: 0,
-        totalBooks: 0,
-        availableBooks: 0,
-        booksCheckedOut: 0,
-        dueBooks: 0,
+        registeredStudents: 30,
+        totalBooks: 100,
+        availableBooks: 50,
+        booksCheckedOut: 50,
+        dueBooks: 15,
     });
 
     // useEffect(() => {
