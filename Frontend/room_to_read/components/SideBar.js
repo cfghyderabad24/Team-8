@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import StudentsPage from '../pages/StudentsPage';
 import ViewStudent from '../pages/ViewStudent';
 import BookSearchApp from '../pages/Book';
+import TransactionPage from '../pages/inout';
 
 const Sidebar = () => {
   const navigation = useNavigation();
@@ -43,6 +44,8 @@ const Sidebar = () => {
         return <ViewStudent/>
       case 'Books':
         return <BookSearchApp/>
+      case 'Transactions':
+        return <TransactionPage/>
       // Add more cases for other sidebar items as needed
     }
   };
@@ -68,7 +71,7 @@ const Sidebar = () => {
       
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('home')}>Home</Text>
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('Books')}>Books</Text>
-        <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('')}>Check-in / Check-out</Text>
+        <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('Transactions')}>Check-in / Check-out</Text>
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('Students')}>Students</Text>
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('Analytics')}>Analytics</Text>
         <Text style={styles.sidebarText} onPress={() => handleSidebarItemPress('')}>Logout</Text>
